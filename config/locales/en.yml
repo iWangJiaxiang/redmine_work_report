@@ -1,3 +1,11 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  html_title: "Work Report"
+  menu_title: "Work Report"
+  # Permission i18n
+  permission_enable_work_report: Enable Work Report
+  permission_view_work_report: View Work Report in th project
+  permission_delete_work_report: Delete Work Report
+  permission_create_work_report: Create Work Report
+  permission_update_work_report: Update Work Report
+  permission_update_others_work_report: Update Work Report for other people
