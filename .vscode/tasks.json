@@ -1,0 +1,117 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "windows": {
+        "command": "powershell"
+    },
+    "options": {
+        "env": {
+            "container_name": "redmine_plugin_dev"
+        }
+    },
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+    },
+    "problemMatcher": [],
+    "tasks": [
+        {
+            "label": "Start Docker Compose With Building",
+            "detail": "启动Docker Compose本地调试（包含构建）",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "up",
+                "--build",
+                "-d",
+                "--remove-orphans"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "group": "test"
+        },
+        {
+            "label": "Start Docker Compose",
+            "detail": "启动Docker Compose本地调试",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "up",
+                "-d",
+                "--remove-orphans"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Stop Docker Compose",
+            "detail": "停止Docker Compose本地调试",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "down"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "pre-task-for-launch",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "restart docker",
+                "rm pid",
+                "docker log",
+            ]
+        },
+        {
+            "label": "restart docker",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "restart",
+                "${container_name}"
+            ]
+        },
+        {
+            "label": "rm pid",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "exec",
+                "${container_name}",
+                "bash",
+                "-c",
+                "if rm /app/redmine/tmp/pids/server.pid;then echo removed pid file;fi",
+            ],"presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "docker log",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "logs",
+                "--tail",
+                "100",
+                "-f",
+                "redmine_plugin_dev",
+            ]
+        },
+    ],
+}

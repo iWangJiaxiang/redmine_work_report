@@ -1,0 +1,6 @@
+
+# 项目根路径
+project_root=$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")
+
+# 测试容器名称
+container_name=redmine_plugin_dev
