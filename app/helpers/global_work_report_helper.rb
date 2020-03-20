@@ -1,0 +1,2 @@
+module GlobalWorkReportHelper
+end

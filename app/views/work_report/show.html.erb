@@ -1,16 +1,5 @@
 <% html_title t('html_title') %>
 <h2>WorkReportController#show</h2>
 
-<% @paramss.each do |param| %>
-<div>
-param:
-<%= param.inspect %>
-</div>
-<% end %>
 
-<%= @paramss.inspect %>
-
-user id <%= @user_id.inspect %>
-user id <%= User.current.inspect %>
-
-<%= @test.inspect %>
+<%= render :partial => 'common/debug' %><%= render :partial => 'common/debug' %>

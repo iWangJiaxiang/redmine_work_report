@@ -1,0 +1,28 @@
+<hr>
+
+<h2>Debug信息</h2>
+
+<div>
+    测试信息
+    <p><%= @test.inspect if @test %>
+</p>
+</div>
+<p></p>
+<div>
+    参数
+    <% params.each do |param| %>
+    <div>
+        param:
+        <%= param.inspect %>
+    </div>
+    <% end %>
+    <div><%= params.inspect %></div>
+</div>
+
+<p></p>
+<div>
+    用户
+    <div>
+        <%= User.current.inspect %>
+    </div>
+</div>
