@@ -29,7 +29,8 @@ class WorkReportController < ApplicationController
   def destroy
   end
 
-  def list
+  def index
+    puts "- - - - --666666"
     @project_id=1
     @report=WorkReport.create()
   end

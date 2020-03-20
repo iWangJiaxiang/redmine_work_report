@@ -18,6 +18,6 @@ class GlobalWorkReportTypeController < ApplicationController
   def destroy
   end
 
-  def list
+  def index
   end
 end

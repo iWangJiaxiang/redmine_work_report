@@ -1,4 +1,4 @@
-class WorkReportTypeController < ApplicationController
+class GlobalWorkReportController < ApplicationController
 
   def new
   end
